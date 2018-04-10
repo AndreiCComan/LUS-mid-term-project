@@ -56,21 +56,26 @@ The <tt>config.json</tt> file is used to manage the code behavior. It must be mo
 	* <tt>witten_bell_k</tt>
 	* <tt>discount_D</tt>	
 
-&#9432; Please refer to https://goo.gl/zCjxWW (NGramMake) for more details on some of the above options. Informations on <tt>handle_unk</tt>, <tt>additional_feature</tt> and <tt>improvement</tt> options can be found in the report.
+&#9432; Please refer to https://goo.gl/zCjxWW (NGramMake) for more details on some of the above options. Informations on <tt>handle_unk</tt>, <tt>additional_feature</tt> and <tt>improvement</tt> options can be found in the report. \
+
+Two additional files are provided:
+* <tt>parameters_search</tt> which will iterate over some parameters, generate a <tt>config.json</tt> and call the <tt>slu.py</tt> script
+* <tt>k_fold_cross_validation</tt> which will do k-fold cross validation on the train file by creating for each fold a train, test and <tt>config.json</tt>. Then it will call <tt>slu.py</tt>.\
+You can configure the cross validation run by editing the <tt>k_fold_config.json</tt>, which has an additional parameter for setting the <tt>k</tt> value
+
 ___
 
 &#9888; <b>NOTE</b>: Every time a script is executed, it will always search for a <tt>config.json</tt> file.
 ___
 
-Two addional files are provided:
-   * <tt>parameters_search</tt> which will iterate over some parameters, generate a <tt>config.json</tt> and call the <tt>slu.py</tt> script
-   * <tt>k_fold_cross_validation</tt> will do k-fold cross validation on the train file by creating for each fold a train, test and <tt>config.json</tt>
-
 * &#128193; <tt>02_baseline</tt> \
 The <tt>config.json</tt> file is used to manage the code behavior. It must be modified before execution by choosing one of the following options:
+
 	* <tt>random</tt>: the concept to be assigned to a token is randomly chosen among the set of train concepts
 	* <tt>chance</tt>: the choice of the concept follows the probability distribution of the concepts within the train set
 	* <tt>majority</tt>: the choice of the concept relies on the most common concept in the train
+
+	You can run all the baselines by running the <tt>run_all_baselines.py</tt> script	
 * &#128193; <tt>03_data_analysis</tt> \
 This folder contains the code for the data analysis
 * &#128193; <tt>04_report</tt> \

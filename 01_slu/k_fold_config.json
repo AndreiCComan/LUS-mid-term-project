@@ -1,0 +1,15 @@
+{
+    "k":"10",
+    "output_dir": "",
+    "train_file": "NLSPARQL.train.data",
+    "train_feats_file": "NLSPARQL.train.feats.txt",
+    "handle_unk": "uniform",
+    "ngram_size": "4",
+    "smoothing": "kneser_ney",
+    "backoff": "false",
+    "bins": "-1",
+    "witten_bell_k": "1.0",
+    "discount_D": "-1",
+    "additional_feature": "none",
+    "improvement": "naive"
+}
