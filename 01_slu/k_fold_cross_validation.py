@@ -5,7 +5,7 @@
 
 # ### Import
 
-# In[1]:
+# In[ ]:
 
 
 import json
@@ -15,7 +15,7 @@ import numpy as np
 
 # ### Load JSON configuration file
 
-# In[2]:
+# In[ ]:
 
 
 # set the configuration file
@@ -28,13 +28,13 @@ json_configuration_file = open(CONFIGURATION_FILE, "r", encoding="utf8")
 CONFIGURATION = json.load(json_configuration_file)
 
 
-# In[3]:
+# In[ ]:
 
 
 OUTPUT_CONFIGURATION_FILE_NAME = "config.json"
 
 
-# In[4]:
+# In[ ]:
 
 
 K = int(CONFIGURATION["k"])
@@ -65,13 +65,13 @@ WITTEN_BELL_K = CONFIGURATION["witten_bell_k"]
 DISCOUNT_D = CONFIGURATION["discount_D"]
 
 
-# In[5]:
+# In[ ]:
 
 
 assert(subprocess.call("[[ -e config.json ]] && cp config.json config_bak.json", shell = True) == 0),"> unable to make a copy of configuration file"
 
 
-# In[6]:
+# In[ ]:
 
 
 # remove the output directory if already exists
@@ -81,7 +81,7 @@ assert(subprocess.call("rm -rf {0}".format(OUTPUT_DIR), shell = True) == 0),"> u
 assert(subprocess.call("mkdir -p {0}".format(OUTPUT_DIR), shell = True) == 0),"> unable to mkdir {0}".format(OUTPUT_DIR)
 
 
-# In[7]:
+# In[ ]:
 
 
 def read_sentences(input_file_path):
@@ -106,7 +106,7 @@ def read_sentences(input_file_path):
     return input_file_sentences
 
 
-# In[8]:
+# In[ ]:
 
 
 train_sentences = read_sentences(TRAIN_FILE)
@@ -115,14 +115,14 @@ train_feats_sentences = read_sentences(TRAIN_FEATS_FILE)
 assert(len(train_sentences) == len(train_feats_sentences))
 
 
-# In[9]:
+# In[ ]:
 
 
 train_folds = np.array_split(train_sentences, K)
 train_feats_folds = np.array_split(train_feats_sentences, K)
 
 
-# In[10]:
+# In[ ]:
 
 
 def write_fold_to_file(fold, output_file_path):
@@ -134,7 +134,7 @@ def write_fold_to_file(fold, output_file_path):
     output_file.close()
 
 
-# In[11]:
+# In[ ]:
 
 
 try:
@@ -190,7 +190,7 @@ except:
     pass
 
 
-# In[12]:
+# In[ ]:
 
 
 assert(subprocess.call("[[ -e config_bak.json ]] && mv config_bak.json config.json", shell = True) == 0),"> unable to make a copy of configuration file"
