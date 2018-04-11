@@ -5,7 +5,7 @@
 
 # ### Import
 
-# In[276]:
+# In[ ]:
 
 
 # import the json library for reading the configuration file
@@ -23,7 +23,7 @@ from operator import itemgetter
 
 # ### Load JSON configuration file
 
-# In[277]:
+# In[ ]:
 
 
 # set the configuration file
@@ -36,7 +36,7 @@ json_configuration_file = open(CONFIGURATION_FILE, "r", encoding="utf8")
 CONFIGURATION = json.load(json_configuration_file)
 
 
-# In[278]:
+# In[ ]:
 
 
 # read the configuration file parameters
@@ -60,49 +60,49 @@ OUTPUT_DIR = CONFIGURATION["output_dir"]
 
 # ### Check configurations
 
-# In[279]:
+# In[ ]:
 
 
 # make sure the parameter assumes the right values
 assert(ADDITIONAL_FEATURE == "none" or       ADDITIONAL_FEATURE == "tokenpos" or       ADDITIONAL_FEATURE == "lemmapos" or       ADDITIONAL_FEATURE == "lemma"),"> ADDITIONAL_FEATURE value must be either <none>, <tokenpos>, <lemmapos> or <lemma>, provided value is <{0}>".format(ADDITIONAL_FEATURE)
 
 
-# In[280]:
+# In[ ]:
 
 
 # make sure the parameter assumes the right values
 assert(IMPROVEMENT == "none" or       IMPROVEMENT == "wise" or       IMPROVEMENT == "naive"),"> IMPROVEMENTS value must be either <none>, <wise> or <naive>, provided value is <{0}>".format(IMPROVEMENT)
 
 
-# In[281]:
+# In[ ]:
 
 
 # make sure the parameter assumes the right values
 assert(SMOOTHING == "witten_bell" or       SMOOTHING == "katz" or       SMOOTHING == "kneser_ney" or       SMOOTHING == "absolute" or       SMOOTHING == "presmoothed" or       SMOOTHING == "unsmoothed"),"> SMOOTHING value must be either <witten_bell>, <katz>, <kneser_ney>, <absolute>, <presmoothed> or <unsmoothed> provided value is <{0}>".format(SMOOTHING)
 
 
-# In[282]:
+# In[ ]:
 
 
 # make sure the parameter assumes the right values
 assert(BACKOFF == "true" or       BACKOFF == "false"),"> BACKOFF value must be either <true> or <false>, provided value is <{0}>".format(BACKOFF)
 
 
-# In[283]:
+# In[ ]:
 
 
 # make sure the parameter assumes the right values
 assert(NGRAM_SIZE >= 1),"> NGRAM_SIZE must be greater than or equal to 1, provided value is <{0}>".format(NGRAM_SIZE)
 
 
-# In[284]:
+# In[ ]:
 
 
 # make sure the parameter assumes the right values
 assert(HANDLE_UNK == "uniform" or       HANDLE_UNK.startswith("cut_off_")),"> HANDLE_UNK value must be either <uniform> or <cut_off_#>, provided value is <{0}>".format(HANDLE_UNK)
 
 
-# In[285]:
+# In[ ]:
 
 
 # generate the output directory name
@@ -114,7 +114,7 @@ else:
 
 # ### Helper functions
 
-# In[286]:
+# In[ ]:
 
 
 # this function takes as input:
@@ -251,7 +251,7 @@ def apply_additional_feature(input_file_path, features_file_path, additional_fea
     return output_file_path
 
 
-# In[287]:
+# In[ ]:
 
 
 # this function takes as input a file and generates a modified version of it by following this example:
@@ -379,7 +379,7 @@ def apply_wise_improvement(input_file_path):
     return output_file_path
 
 
-# In[288]:
+# In[ ]:
 
 
 # this function takes as input a file and generates a modified version of it by following this example:
@@ -460,7 +460,7 @@ def apply_naive_improvement(input_file_path):
     return output_file_path
 
 
-# In[289]:
+# In[ ]:
 
 
 # this function takes an input a file and generates different files, such as:
@@ -637,7 +637,7 @@ def generate_useful_files(train_file_path, output_dir):
     return (token_counts_dictionary,            concept_counts_dictionary,            token_concept_counts_dictionary,            token_concept_probs_dictionary)
 
 
-# In[290]:
+# In[ ]:
 
 
 # this function takes as input a file and generates a lexicon and transducer in the passed output directory path
@@ -759,7 +759,7 @@ def generate_lexicon_and_transducer_uniform(train_file_path, output_dir):
     return (lexicon_file_path, transducer_file_path) 
 
 
-# In[291]:
+# In[ ]:
 
 
 # this function takes as input a file and generates a lexicon and transducer in the passed output directory path
@@ -965,7 +965,7 @@ def generate_lexicon_and_transducer_cut_off(train_file_path, cut_off_value, outp
     return (lexicon_file_path, transducer_file_path) 
 
 
-# In[292]:
+# In[ ]:
 
 
 # this is a helper function that decides which specific function should be called
@@ -986,7 +986,7 @@ def generate_lexicon_and_transducer(train_file_path, handle_unk, output_dir):
         return generate_lexicon_and_transducer_cut_off(train_file_path, cut_off_value, output_dir)
 
 
-# In[293]:
+# In[ ]:
 
 
 # this function compiles a transducer in the passed output directory,
@@ -1008,7 +1008,7 @@ def compile_transducer(lexicon_file_path, transducer_file_path, output_dir):
     return transducer_fst_file_path
 
 
-# In[294]:
+# In[ ]:
 
 
 # this function extracts the concepts from sentences and outputs them 
@@ -1072,7 +1072,7 @@ def create_concept_sentences(train_file_path, output_dir):
     return concept_sentences_file_path
 
 
-# In[295]:
+# In[ ]:
 
 
 # this function creates the language model
@@ -1105,7 +1105,7 @@ def create_language_model(lexicon_file_path, concept_sentences_file_path, ngram_
     return language_model_lm_file_path    
 
 
-# In[296]:
+# In[ ]:
 
 
 # this function compiles (creates a trasnducer of) a string given as input
@@ -1124,7 +1124,7 @@ def compile_string(sentence, lexicon_file_path, output_dir):
     return result_compiled_string_file_path
 
 
-# In[297]:
+# In[ ]:
 
 
 # this function does the composition between:
@@ -1143,35 +1143,13 @@ def execute_composition(compiled_string_file_path, transducer_fst_file_path, lan
     return result_composition_file_path
 
 
-# In[298]:
+# In[ ]:
 
 
 # this function tags a file
-def tag_file(test_file_path, lexicon_file_path, transducer_fst_file_path, language_model_lm_file_path, train_file, output_dir):
+def tag_file(test_file_path, lexicon_file_path, transducer_fst_file_path, language_model_lm_file_path, output_dir):
     
     print("> tagging file ...")
-    
-    train_file = open(train_file, "r", encoding="utf8")
-    concepts_list = []
-    
-    for line in train_file:
-        
-        line = line.replace("\n", "")
-        
-        if len(line) == 0:
-            continue
-            
-        line_split = line.split("\t") 
-        
-        # make sure the split produces the expected number of arguments
-        assert(len(line_split) == 2),        "> expected 2 tab separated values, found {0} instead".format(len(line_split))
-        
-        concept = line_split[1]
-        
-        if concept not in concepts_list:
-            concepts_list.append(concept)    
-    
-    train_file.close()        
     
     # define the tagged file path
     result_tagged_file_path = "{0}/result_tagged_file.txt".format(output_dir)
@@ -1262,7 +1240,7 @@ def tag_file(test_file_path, lexicon_file_path, transducer_fst_file_path, langua
                 test_token = list_of_test_tokens[index]
                 test_concept = list_of_test_concepts[index]
                 result_concept = list_of_result_concepts[index]
-                if result_concept not in concepts_list:
+                if result_concept.startswith("_"):
                     result_concept = "O"
                 result_tagged_file.write("{0} {1} {2}\n".format(test_token,                                                                test_concept,                                                                result_concept))
             # add end of sentence to the tagged file
@@ -1310,7 +1288,7 @@ def tag_file(test_file_path, lexicon_file_path, transducer_fst_file_path, langua
     return result_tagged_file_path
 
 
-# In[299]:
+# In[ ]:
 
 
 # this function evaluates the result of the tagging process
@@ -1330,7 +1308,7 @@ def evaluate_file(result_tagged_file_path, output_dir):
 
 # ### Main
 
-# In[300]:
+# In[ ]:
 
 
 # remove the output directory if already exists
@@ -1382,7 +1360,7 @@ if ADDITIONAL_FEATURE != "none":
         language_model_lm_file_path = create_language_model(lexicon_file_path, concept_sentences_file_path, NGRAM_SIZE, SMOOTHING, BACKOFF, BINS, WITTEN_BELL_K, DISCOUNT_D, OUTPUT_DIR)
         
         # tag the test file
-        result_tagged_file_path = tag_file(test_additional_feature_file_path, lexicon_file_path, transducer_fst_file_path, language_model_lm_file_path, train_temp_file_path, OUTPUT_DIR)       
+        result_tagged_file_path = tag_file(test_additional_feature_file_path, lexicon_file_path, transducer_fst_file_path, language_model_lm_file_path, OUTPUT_DIR)       
         
         # evaluate the results
         evaluation_file_path = evaluate_file(result_tagged_file_path, OUTPUT_DIR)
@@ -1406,7 +1384,7 @@ if ADDITIONAL_FEATURE != "none":
         language_model_lm_file_path = create_language_model(lexicon_file_path, concept_sentences_file_path, NGRAM_SIZE, SMOOTHING, BACKOFF, BINS, WITTEN_BELL_K, DISCOUNT_D, OUTPUT_DIR)
         
         # tag the test file
-        result_tagged_file_path = tag_file(test_additional_feature_file_path, lexicon_file_path, transducer_fst_file_path, language_model_lm_file_path, train_temp_file_path, OUTPUT_DIR)       
+        result_tagged_file_path = tag_file(test_additional_feature_file_path, lexicon_file_path, transducer_fst_file_path, language_model_lm_file_path, OUTPUT_DIR)       
         
         # evaluate the results
         evaluation_file_path = evaluate_file(result_tagged_file_path, OUTPUT_DIR)
@@ -1426,7 +1404,7 @@ if ADDITIONAL_FEATURE != "none":
         language_model_lm_file_path = create_language_model(lexicon_file_path, concept_sentences_file_path, NGRAM_SIZE, SMOOTHING, BACKOFF, BINS, WITTEN_BELL_K, DISCOUNT_D, OUTPUT_DIR)
         
         # tag the test file
-        result_tagged_file_path = tag_file(test_additional_feature_file_path, lexicon_file_path, transducer_fst_file_path, language_model_lm_file_path, train_temp_file_path, OUTPUT_DIR)       
+        result_tagged_file_path = tag_file(test_additional_feature_file_path, lexicon_file_path, transducer_fst_file_path, language_model_lm_file_path, OUTPUT_DIR)       
         
         # evaluate the results
         evaluation_file_path = evaluate_file(result_tagged_file_path, OUTPUT_DIR)
@@ -1452,7 +1430,7 @@ else: # ADDITIONAL_FEATURE == "none"
         language_model_lm_file_path = create_language_model(lexicon_file_path, concept_sentences_file_path, NGRAM_SIZE, SMOOTHING, BACKOFF, BINS, WITTEN_BELL_K, DISCOUNT_D, OUTPUT_DIR)
         
         # tag the test file
-        result_tagged_file_path = tag_file(test_temp_file_path, lexicon_file_path, transducer_fst_file_path, language_model_lm_file_path, train_temp_file_path, OUTPUT_DIR)       
+        result_tagged_file_path = tag_file(test_temp_file_path, lexicon_file_path, transducer_fst_file_path, language_model_lm_file_path, OUTPUT_DIR)       
         
         # evaluate the results
         evaluation_file_path = evaluate_file(result_tagged_file_path, OUTPUT_DIR)
@@ -1476,7 +1454,7 @@ else: # ADDITIONAL_FEATURE == "none"
         language_model_lm_file_path = create_language_model(lexicon_file_path, concept_sentences_file_path, NGRAM_SIZE, SMOOTHING, BACKOFF, BINS, WITTEN_BELL_K, DISCOUNT_D, OUTPUT_DIR)
         
         # tag the test file
-        result_tagged_file_path = tag_file(test_temp_file_path, lexicon_file_path, transducer_fst_file_path, language_model_lm_file_path, train_temp_file_path, OUTPUT_DIR)       
+        result_tagged_file_path = tag_file(test_temp_file_path, lexicon_file_path, transducer_fst_file_path, language_model_lm_file_path, OUTPUT_DIR)       
         
         # evaluate the results
         evaluation_file_path = evaluate_file(result_tagged_file_path, OUTPUT_DIR)
@@ -1496,7 +1474,7 @@ else: # ADDITIONAL_FEATURE == "none"
         language_model_lm_file_path = create_language_model(lexicon_file_path, concept_sentences_file_path, NGRAM_SIZE, SMOOTHING, BACKOFF, BINS, WITTEN_BELL_K, DISCOUNT_D, OUTPUT_DIR)
         
         # tag the test file
-        result_tagged_file_path = tag_file(test_temp_file_path, lexicon_file_path, transducer_fst_file_path, language_model_lm_file_path, train_temp_file_path, OUTPUT_DIR)       
+        result_tagged_file_path = tag_file(test_temp_file_path, lexicon_file_path, transducer_fst_file_path, language_model_lm_file_path, OUTPUT_DIR)       
         
         # evaluate the results
         evaluation_file_path = evaluate_file(result_tagged_file_path, OUTPUT_DIR)
